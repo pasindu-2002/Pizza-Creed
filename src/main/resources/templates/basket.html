@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Shopping Basket</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select,
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.basket-container {
+    margin-top: 20px;
+}
+
+.basket-container h2 {
+    margin-bottom: 10px;
+}
+
+.basket-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.basket-container th,
+.basket-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.basket-container th {
+    background-color: #f2f2f2;
+}
+
+.basket-container .remove-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.basket-container .remove-button:hover {
+    background-color: #cc0000;
+}
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Add Items to Basket</h1>
+  <div class="form-container">
+    <form th:action="@{/baskets/{basketId}/add(basketId=${basket.id})}" method="post">
+      <label for="pizza-select">Select Pizza:</label>
+      <select id="pizza-select" name="pizzaId">
+        <option th:each="pizza : ${pizzas}" th:value="${pizza.id}" th:text="${pizza.name + ' - $' + pizza.size + ' - $' + pizza.price}"></option>
+      </select>
+      <br>
+      <label for="quantity-input">Quantity:</label>
+      <input type="number" id="quantity-input" name="quantity" min="1" value="1">
+      <br>
+      <button type="submit">Add to Basket</button>
+    </form>
+  </div>
+  <div class="basket-container">
+    <h2>Your Basket</h2>
+    <table id="basket-table">
+      <thead>
+      <tr>
+        <th>Pizza</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pizza : ${basket.pizzas}">
+        <td th:text="${pizza.name}">Margherita</td>
+        <td th:text="'$' + ${pizza.price}">10</td>
+        <td th:text="${#lists.frequency(basket.pizzas, pizza)}">2</td>
+        <td>
+          <form th:action="@{/baskets/{basketId}/remove(basketId=${basket.id})}" method="post">
+            <input type="hidden" name="pizzaId" th:value="${pizza.id}">
+            <button type="submit" class="remove-button">Remove</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <form th:action="@{/baskets/{basketId}/checkout(basketId=${basket.id})}" method="post">
+      <button type="submit" id="checkout-button">Checkout</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

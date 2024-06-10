@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add New Pizza</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #343a40;
+        }
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Add New Pizza</h1>
+
+  <div th:if="${successMessage}" class="message success" th:text="${successMessage}"></div>
+  <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
+  <form th:action="@{/admin/pizza/save}" th:object="${pizza}" method="post">
+    <label for="name">Pizza Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+
+    <label for="size">Size:</label>
+    <select id="size" name="size" th:field="*{size}" required>
+      <option value="Small">Small</option>
+      <option value="Medium">Medium</option>
+      <option value="Large">Large</option>
+    </select>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" th:field="*{price}" step="0.01" required>
+
+    <button type="submit" class="btn">Add Pizza</button>
+  </form>
+</div>
+<center>
+<div class="button-container" style="margin-top:30px;">
+  <a href="/admin/pizza/" class="btn">Back to Dashboard</a>
+</div>
+  </center>
+</body>
+</html>

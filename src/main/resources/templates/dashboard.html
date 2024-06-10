@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pizza List - Pizza Creed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #343a40;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .add-new {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .add-new:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .actions a {
+            margin-right: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .edit {
+            background-color: #ffc107;
+            color: #fff;
+        }
+        .edit:hover {
+            background-color: #e0a800;
+        }
+        .delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .delete:hover {
+            background-color: #c82333;
+        }
+        #basket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#basket-table th,
+#basket-table td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+#basket-table th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+#basket-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#basket-table .actions a {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+#basket-table .edit {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+#basket-table .edit:hover {
+    background-color: #e0a800;
+}
+
+#basket-table .delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+#basket-table .delete:hover {
+    background-color: #c82333;
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Pizza List</h1>
+    <a class="add-new" href="/admin/pizza/add">Add New Pizza</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Price(Rs.)</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pizza : ${pizzas}">
+            <td th:text="${pizza.name}">Pizza Name</td>
+            <td th:text="${pizza.size}">Pizza Size</td>
+            <td th:text="${pizza.price}">Pizza Price</td>
+            <td class="actions">
+                <a class="edit" th:href="@{/admin/pizza/edit/{id}(id=${pizza.id})}">Edit</a>
+                <a class="delete" th:href="@{/admin/pizza/delete/{id}(id=${pizza.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
