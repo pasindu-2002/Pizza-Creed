@@ -54,7 +54,7 @@ Ensure you have the following installed on your system:
    ```
    (On Windows, use `mvnw` instead of `./mvnw`)
    
-3. The application should now be running at `http://localhost:8181`.
+3. The application should now be running at `http://localhost:8081`.
 
 ## Endpoints
 Refer to the [Postman Collection](https://www.postman.com/speeding-capsule-928798/workspace/nibm-ead-2/collection/30452672-92f8720f-f44f-4fe4-b82f-9e1b98d1a2a5?action=share&creator=30452672) for detailed API endpoints and sample requests.
@@ -66,7 +66,7 @@ Explore and test the API using the [Postman Collection](https://www.postman.com/
 Check out the detailed API documentation on [Postman Documentation](https://documenter.getpostman.com/view/35088245/2sA3XJnREA).
 
 ## Admin Panel
-The admin panel can be accessed at `http://localhost:8181/login` with the following credentials:
+The admin panel can be accessed at `http://localhost:8081/login` with the following credentials:
 
 - Username: admin
 - Password: admin
