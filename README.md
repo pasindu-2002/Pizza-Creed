@@ -71,4 +71,9 @@ The admin panel can be accessed at `http://localhost:8081/login` with the follow
 - Username: admin
 - Password: admin
 
-## Intrface
+## Interface
+
+![Screenshot 2024-08-01 090136](https://github.com/user-attachments/assets/88b1e448-ff4c-4cb0-a5c1-6137b04e9c44)
+![Screenshot 2024-08-01 090152](https://github.com/user-attachments/assets/a7d74793-8997-40a2-b55a-08594f540929)
+![Screenshot 2024-08-01 090121](https://github.com/user-attachments/assets/606f75af-080d-4b6b-be7c-36e2b2f27f37)
+
